@@ -4,14 +4,14 @@ This is a helper container for traefik. It can add, remove and update services.
 
 ## Usage
 
-DO NOT CHANGE: `/home/config.yml`
+### Add command alias
 
 ```bash
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/traefik/data/config.tml:/home/config.yml fascinated/traefik-helper:latest python src/manage.py
+alias traefik-helper='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/traefik/data/config.yml:/app/config.yml -e CONTAINER_NAME=traefik fascinated/traefik-helper:latest python src/manage.py'
 ```
 
-**Example Add**
+### Add service
 
 ```bash
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/traefik/data/config.tml:/home/config.yml fascinated/traefik-helper:latest python src/manage.py add test test.fascinated.cc http://10.0.0.10
+traefik-helper add [name] [domain] [service url]
 ```

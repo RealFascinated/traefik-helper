@@ -5,10 +5,13 @@ import os
 
 # Variables
 configFile = "./config.yml"
+containerName = "traefik"
 
 # Are we running in a Docker container?
 if os.environ.get("CONFIG_FILE"):
   configFile = os.environ.get("CONFIG_FILE")
+if os.environ.get("CONTAINER_NAME"):
+  containerName = os.environ.get("CONTAINER_NAME")
 
 # DO NOT TOUCH
 commands = ["add", "remove", "list"]
@@ -32,10 +35,12 @@ routers = http["routers"]
 services = http["services"]
 
 def restartTraefik():
-  print("Restarting Traefik...")
+  print("Restarting Traefik, please wait this can take a while...")
   
   # Restart Traefik in the base directory
   subprocess.run(["docker", "restart", "traefik"])
+
+  print("Traefik restarted!")
 
 def addDomain(name, domain, serviceHost):
   # Check if name already exists
