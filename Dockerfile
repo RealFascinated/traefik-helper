@@ -27,7 +27,7 @@ COPY . /app
 
 # Copy Docker binaries from the builder stage
 COPY --from=builder /usr/bin/docker /usr/bin/docker
-COPY --from=builder /usr/lib/docker /usr/lib/docker
+#COPY --from=builder /usr/lib/docker /usr/lib/docker
 
 # Set an environment variable with the path to the config file
 ENV CONFIG_FILE=/app/config.yml
