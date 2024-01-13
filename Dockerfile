@@ -14,6 +14,6 @@ RUN python -m pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 
-ENV CONFIG_FILE_PATH=/app/config.yml
+ENV CONFIG_FILE=/app/config.yml
 
 CMD ["python", "src/manage.py"]
