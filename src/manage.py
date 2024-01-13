@@ -103,28 +103,27 @@ def removeDomain(name):
 def listDomains():
   print("Listing domains:")
 
-  # domain -> service host
+  # name and domain -> service host
   domains = {}
 
-  # Get domains (Host and HostRegexp)
+  # Loop through routers
   for name, router in routers.items():
-    if "rule" in router:
-      rule = router["rule"]
+    # Get domain
+    domain = router["rule"].split("`")[1]
+    
+    # Get service host
+    serviceHost = services[name]["loadBalancer"]["servers"][0]["url"]
 
-      # Host
-      if rule.startswith("Host"):
-        domain = rule.split("`")[1]
-        domains[domain] = services[name]["loadBalancer"]["servers"][0]["url"]
-
-      # HostRegexp
-      if rule.startswith("HostRegexp"):
-        domain = rule.split("`")[1]
-        domains[domain] = services[name]["loadBalancer"]["servers"][0]["url"]
+    # Add to domains
+    domains[name] = {
+      "domain": domain,
+      "serviceHost": serviceHost
+    }
 
   # Print domains
-  for domain, serviceHost in domains.items():
-    print(" - http://%s -> %s" % (domain, serviceHost))
-  
+  for name, domain in domains.items():
+    print(" - [%s] http://%s -> %s" % (name, domain["domain"], domain["serviceHost"]))  
+
   print("")
   print("Total: %s" % len(domains))
 
