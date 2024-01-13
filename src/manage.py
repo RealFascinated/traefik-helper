@@ -49,6 +49,7 @@ def addDomain(name, domain, serviceHost):
     exit()
 
   print("Adding domain \"%s\" -> \"%s\"" % (domain, serviceHost))
+  print("Website Url: http://%s" % domain)
 
   # Add router
   routers[name] = {
