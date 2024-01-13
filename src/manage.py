@@ -2,6 +2,7 @@ import sys
 import subprocess
 import yaml
 import os
+from colorama import Fore
 
 # Variables
 configFile = "./config.yml"
@@ -41,16 +42,16 @@ def restartTraefik():
   # Restart Traefik in the base directory
   subprocess.run(["docker", "restart", "traefik"])
 
-  print("Traefik restarted!")
+  print(f"{Fore.GREEN}Done!{Fore.RESET}")
 
 def addDomain(name, domain, serviceHost):
   # Check if name already exists
   if name in routers:
-    print("Name \"%s\" already exists" % name)
+    print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" already exists")
     exit()
 
-  print("Adding domain \"%s\" -> \"%s\"" % (domain, serviceHost))
-  print("Website Url: http://%s" % domain)
+  print(f"Adding domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
+  print(f"Domain: {Fore.GREEN}http://{domain}{Fore.RESET}")
 
   # Add router
   routers[name] = {
@@ -82,10 +83,10 @@ def addDomain(name, domain, serviceHost):
 def removeDomain(name):
   # Check if name exists
   if name not in routers:
-    print("Name \"%s\" does not exist" % name)
+    print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" does not exist")
     exit()
 
-  print("Removing domain \"%s\"" % name)
+  print(f"Removing domain \"{Fore.BLUE}{name}{Fore.RESET}\"")
 
   # Remove router
   del routers[name]
@@ -122,7 +123,7 @@ def listDomains():
 
   # Print domains
   for name, domain in domains.items():
-    print(" - [%s] http://%s -> %s" % (name, domain["domain"], domain["serviceHost"]))  
+    print(f" - {Fore.BLUE}[{name}] {Fore.GREEN}http://{domain['domain']} {Fore.RESET}-> {Fore.YELLOW}{domain['serviceHost']}{Fore.RESET}")  
 
   print("")
   print("Total: %s" % len(domains))
@@ -133,7 +134,7 @@ def updateDomain(name, serviceHost):
     print("Name \"%s\" does not exist" % name)
     exit()
 
-  print("Updating domain \"%s\" -> \"%s\"" % (name, serviceHost))
+  print(f"Updating domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
 
   # Update service
   services[name] = {
