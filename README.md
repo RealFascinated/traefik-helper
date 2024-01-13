@@ -15,3 +15,15 @@ alias traefik-helper='docker run --rm -v /var/run/docker.sock:/var/run/docker.so
 ```bash
 traefik-helper add [name] [domain] [service url]
 ```
+
+### Remove service
+
+```bash
+traefik-helper remove [name]
+```
+
+### List services
+
+```bash
+traefik-helper list
+```
