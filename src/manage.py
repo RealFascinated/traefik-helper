@@ -50,7 +50,7 @@ def addDomain(name, domain, serviceHost):
     print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" already exists")
     exit()
 
-  print(f"Adding domain \"{Fore.LIGHTBLUE_EX}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
+  print(f"Adding domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
   print(f"Domain: {Fore.GREEN}http://{domain}{Fore.RESET}")
 
   # Add router
@@ -123,7 +123,7 @@ def listDomains():
 
   # Print domains
   for name, domain in domains.items():
-    print(f" - {Fore.BLUE}[{name}] {Fore.GREEN}http://{domain['domain']} {Fore.RESET}-> {Fore.YELLOW}{domain['serviceHost']}{Fore.RESET}")  
+    print(f" - {Fore.CYAN}[{name}] {Fore.GREEN}http://{domain['domain']} {Fore.RESET}-> {Fore.YELLOW}{domain['serviceHost']}{Fore.RESET}")  
 
   print("")
   print("Total: %s" % len(domains))
