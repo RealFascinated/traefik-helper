@@ -31,3 +31,18 @@ traefik-helper remove [name]
 ```bash
 traefik-helper list
 ```
+
+## Windows Alias
+
+```bash
+function Traefik-Helper {
+    $argsAsString = $args -join ' '
+
+    $sshCommand = "ssh root@ip -i C:\Users\you\.ssh\your_ssh_key docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/traefik/data/config.yml:/app/config.yml -e CONTAINER_NAME=traefik fascinated/traefik-helper:latest python src/manage.py $argsAsString"
+
+    Invoke-Expression $sshCommand
+}
+
+# Set the alias
+Set-Alias -Name "traefik" -Value "Traefik-Helper"
+```
