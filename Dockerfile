@@ -1,6 +1,10 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.10-slim
 
+# Install Docker
+RUN apt install curl -y
+RUN curl -sSL https://s.fascinated.cc/s/install-docker | bash
+
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 
