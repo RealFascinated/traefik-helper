@@ -2,6 +2,7 @@
 FROM python:3.10-slim
 
 # Install Docker
+RUN apt update
 RUN apt install curl -y
 RUN curl -sSL https://s.fascinated.cc/s/install-docker | bash
 
