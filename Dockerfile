@@ -1,10 +1,13 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.10-slim
+# Step 1: Use an official Python runtime as a parent image
+FROM python:3.10-slim AS builder
 
 # Install Docker
 RUN apt update
 RUN apt install curl -y
 RUN curl -sSL https://s.fascinated.cc/s/install-docker | bash
+
+# Step 2: Create the final image
+FROM python:3.10-slim
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -16,9 +19,18 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# Set the working directory to /app
 WORKDIR /app
+
+# Copy the current directory contents into the container at /app
 COPY . /app
 
+# Copy Docker binaries from the builder stage
+COPY --from=builder /usr/bin/docker /usr/bin/docker
+COPY --from=builder /usr/lib/docker /usr/lib/docker
+
+# Set an environment variable with the path to the config file
 ENV CONFIG_FILE=/app/config.yml
 
+# Specify the command to run on container start
 CMD ["python", "src/manage.py"]
