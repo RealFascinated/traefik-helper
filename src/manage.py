@@ -123,6 +123,9 @@ def listDomains():
   # Print domains
   for domain, serviceHost in domains.items():
     print(" - http://%s -> %s" % (domain, serviceHost))
+  
+  print("")
+  print("Total: %s" % len(domains))
 
 match command:
   case "add":
