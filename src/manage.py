@@ -50,7 +50,7 @@ def addDomain(name, domain, serviceHost):
     print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" already exists")
     exit()
 
-  print(f"Adding domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
+  print(f"Adding domain \"{Fore.CYAN}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
   print(f"Domain: {Fore.GREEN}http://{domain}{Fore.RESET}")
 
   # Add router
@@ -86,7 +86,7 @@ def removeDomain(name):
     print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" does not exist")
     exit()
 
-  print(f"Removing domain \"{Fore.BLUE}{name}{Fore.RESET}\"")
+  print(f"Removing domain \"{Fore.CYAN}{name}{Fore.RESET}\"")
 
   # Remove router
   del routers[name]
@@ -134,7 +134,7 @@ def updateDomain(name, serviceHost):
     print("Name \"%s\" does not exist" % name)
     exit()
 
-  print(f"Updating domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
+  print(f"Updating domain \"{Fore.CYAN}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
 
   # Update service
   services[name] = {
