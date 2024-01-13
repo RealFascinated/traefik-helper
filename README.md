@@ -14,22 +14,10 @@ PLEASE PLEASE PLEASE MAKE SURE YOU HAVE A BACKUP OF YOUR CONFIG FILE BEFORE USIN
 alias traefik-helper='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/traefik/data/config.yml:/app/config.yml -e CONTAINER_NAME=traefik fascinated/traefik-helper:latest python src/manage.py'
 ```
 
-### Add service
+### List commands
 
 ```bash
-traefik-helper add [name] [domain] [service url]
-```
-
-### Remove service
-
-```bash
-traefik-helper remove [name]
-```
-
-### List services
-
-```bash
-traefik-helper list
+traefik-helper
 ```
 
 ## Windows Alias
