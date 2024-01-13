@@ -1,10 +1,14 @@
 import sys
 import subprocess
 import yaml
+import os
 
 # Variables
-baseDir = "/home/traefik/"
-configFile = baseDir + "data/config.yml"
+configFile = "./config.yml"
+
+# Are we running in a Docker container?
+if os.environ.get("CONFIG_FILE"):
+  configFile = os.environ.get("CONFIG_FILE")
 
 # DO NOT TOUCH
 commands = ["add", "remove", "list"]
@@ -31,7 +35,7 @@ def restartTraefik():
   print("Restarting Traefik...")
   
   # Restart Traefik in the base directory
-  subprocess.run(["docker", "compose", "restart", "traefik"], cwd=baseDir)
+  subprocess.run(["docker", "restart", "traefik"])
 
 def addDomain(name, domain, serviceHost):
   # Check if name already exists
