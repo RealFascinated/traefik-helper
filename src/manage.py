@@ -50,7 +50,7 @@ def addDomain(name, domain, serviceHost):
     print(f"Name \"{Fore.RED}{name}{Fore.RESET}\" already exists")
     exit()
 
-  print(f"Adding domain \"{Fore.BLUE}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
+  print(f"Adding domain \"{Fore.LIGHTBLUE_EX}{name}{Fore.RESET}\" -> \"{Fore.YELLOW}{serviceHost}{Fore.RESET}\"")
   print(f"Domain: {Fore.GREEN}http://{domain}{Fore.RESET}")
 
   # Add router
