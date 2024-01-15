@@ -33,5 +33,5 @@ function Traefik-Helper {
 }
 
 # Set the alias
-Set-Alias -Name "traefik" -Value "Traefik-Helper"
+Set-Alias -Name "traefik-helper" -Value "Traefik-Helper"
 ```
