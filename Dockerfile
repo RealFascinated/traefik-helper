@@ -4,7 +4,7 @@ FROM python:3.10-slim AS builder
 # Install Docker
 RUN apt update
 RUN apt install curl -y
-RUN curl -sSL https://s.fascinated.cc/s/install-docker | bash
+RUN curl -sSL https://git.fascinated.cc/Fascinated/linux-scripts/raw/branch/master/docker/install-docker.sh | bash
 
 # Step 2: Create the final image
 FROM python:3.10-slim
