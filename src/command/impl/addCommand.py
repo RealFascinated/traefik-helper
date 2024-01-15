@@ -27,3 +27,5 @@ class AddCommand(Command):
     traefikConfig.save()
 
     restartTraefik()
+
+    print(f"Access your service at http://{domain}")
