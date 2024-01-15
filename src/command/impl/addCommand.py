@@ -18,6 +18,11 @@ class AddCommand(Command):
     if traefikConfig.hasRouter(name):
       print(f"Router \"{name}\" already exists")
       return
+    
+    # Validate if the service host is a valid URL
+    if not serviceHost.startswith("http://") and not serviceHost.startswith("https://"):
+      print(f"Service host \"{serviceHost}\" is not a valid URL")
+      return
 
     print(f"Adding \"{domain}\" -> \"{serviceHost}\"")
   
