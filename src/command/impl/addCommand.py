@@ -27,5 +27,3 @@ class AddCommand(Command):
     traefikConfig.save()
 
     restartTraefik()
-
-    print("Done!")

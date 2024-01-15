@@ -4,7 +4,8 @@ This is a helper container for traefik. It can add, remove and update services.
 
 ## NOTICE
 
-PLEASE PLEASE PLEASE MAKE SURE YOU HAVE A BACKUP OF YOUR CONFIG FILE BEFORE USING THIS CONTAINER. I AM NOT RESPONSIBLE FOR ANY DATA LOSS.
+PLEASE PLEASE PLEASE MAKE SURE YOU HAVE A BACKUP OF YOUR CONFIG FILE BEFORE USING THIS CONTAINER. I AM NOT RESPONSIBLE FOR ANY DATA LOSS. </br>
+This helper also assumes that you have SSL certificates setup for your services.
 
 ## Usage
 

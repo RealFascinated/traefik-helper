@@ -25,5 +25,3 @@ class RemoveCommand(Command):
     traefikConfig.save()
 
     restartTraefik()
-
-    print(f"Removed \"{name}\"")
