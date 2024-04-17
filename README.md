@@ -23,6 +23,8 @@ traefik-helper
 
 ## Windows Alias
 
+Create the directory `~/Documents/WindowsPowerShell` and create a file called `Microsoft.PowerShell_profile.ps1` in that directory. Add the following code to the file.
+
 ```bash
 function Traefik-Helper {
     $argsAsString = $args -join ' '
@@ -33,5 +35,7 @@ function Traefik-Helper {
 }
 
 # Set the alias
-Set-Alias -Name "traefik-helper" -Value "Traefik-Helper"
+Set-Alias -Name "traefik" -Value "Traefik-Helper"
 ```
+
+This will allow you to run the `traefik` command in PowerShell.
