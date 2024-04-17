@@ -23,6 +23,8 @@ traefik-helper
 
 ## Windows Alias
 
+Ensure you have ran `Set-ExecutionPolicy Unrestricted` in PowerShell as an administrator.
+
 Create the directory `~/Documents/WindowsPowerShell` and create a file called `Microsoft.PowerShell_profile.ps1` in that directory. Add the following code to the file.
 
 ```bash
