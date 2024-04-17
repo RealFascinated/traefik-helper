@@ -6,7 +6,7 @@ class AddCommand(Command):
   def __init__(self):
     super().__init__("add", "Add a domain", "add <name> <domain> <service host>")
 
-  def execute(self, traefikConfig:TraefikConfig, args):
+  def execute(self, traefikConfig: TraefikConfig, args):
     if len(args) < 3:
       self.printUsage()
       return
@@ -31,6 +31,6 @@ class AddCommand(Command):
 
     traefikConfig.save()
 
-    restartTraefik()
+    # restartTraefik()
 
     print(f"Access your service at http://{domain}")

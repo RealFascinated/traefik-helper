@@ -6,7 +6,7 @@ class ListCommand(Command):
   def __init__(self):
     super().__init__("list", "List all services", "list")
 
-  def execute(self, traefikConfig:TraefikConfig, args):
+  def execute(self, traefikConfig: TraefikConfig, args):
     print("Listing all services:")
 
     domains = traefikConfig.getAll()

@@ -1,6 +1,7 @@
 from command.impl.addCommand import AddCommand
 from command.impl.listCommand import ListCommand
 from command.impl.removeCommand import RemoveCommand
+from command.impl.restartCommand import RestartCommand
 
 class CommandManager:
 
@@ -10,6 +11,7 @@ class CommandManager:
     self.addCommand(AddCommand())
     self.addCommand(RemoveCommand())
     self.addCommand(ListCommand())
+    self.addCommand(RestartCommand())
     pass
 
   def addCommand(self, command):

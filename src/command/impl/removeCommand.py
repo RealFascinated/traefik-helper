@@ -7,7 +7,7 @@ class RemoveCommand(Command):
   def __init__(self):
     super().__init__("remove", "Remove a domain", "remove <name>")
 
-  def execute(self, traefikConfig:TraefikConfig, args):
+  def execute(self, traefikConfig: TraefikConfig, args):
     if len(args) < 0:
       self.printUsage()
       return
