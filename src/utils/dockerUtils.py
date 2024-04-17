@@ -16,3 +16,7 @@ def restartTraefik():
   subprocess.run(["docker", "restart", containerName])
 
   print("Done!")
+
+def getTraefikLogs():
+  print("Getting Traefik logs, please wait...")
+  subprocess.run(["docker", "logs", containerName, "-f"])
