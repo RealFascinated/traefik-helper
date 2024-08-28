@@ -50,6 +50,10 @@ class TraefikConfig:
       "service": name
     }
 
+    # Add trailing slash
+    if not serviceHost.endswith("/"): 
+      serviceHost += "/"
+
     # Add service
     self.configYml["http"]["services"][name] = {
       "loadBalancer": {
