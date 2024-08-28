@@ -39,4 +39,4 @@ class AddSubPathCommand(Command):
     traefikConfig.addSubPathRouter(subPathName, domain, path, serviceHost)
     traefikConfig.save()
 
-    print(f"Access your service at http://{domain}")
+    print(f"Access your service at http://{domain}{path}")

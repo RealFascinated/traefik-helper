@@ -75,6 +75,9 @@ class TraefikConfig:
     return name in self.configYml["http"]["middlewares"]
   
   def addPathRewrite(self, name, path):
+    if not path.endswith("/"): # Add trailing slash
+      path += "/"
+
     self.configYml["http"]["middlewares"][name] = {
       "stripPrefix": {
         "prefixes": [path]
