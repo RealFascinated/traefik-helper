@@ -14,15 +14,14 @@ class AddSubPathCommand(Command):
     router = args[0]
     domain = args[1]
     path = args[2]
-    serviceHost = args[3]
-    subPathName = "strip-" + router + "-" + path + "-prefix"
-
     # Fix the path
     if path.startswith("/") == False:
       path = "/" + path
+    serviceHost = args[3]
+    subPathName = domain + path
 
     if traefikConfig.hasPathRewrite(subPathName):
-      print(f"Sub path for \"{router}\" already exists")
+      print(f"Sub path for \"{domain}{path}\" already exists")
       return
     
     if traefikConfig.hasRouter(router) == False:
