@@ -11,8 +11,9 @@ class AddSubPathCommand(Command):
       self.printUsage()
       return
     
+    router = args[0]
     domain = args[1]
-    name = args[0] + "-sub-path-" + domain
+    subPathName = args[0] + "-sub-path-" + domain
     path = args[2]
     serviceHost = args[3]
 
@@ -20,12 +21,12 @@ class AddSubPathCommand(Command):
     if path.startswith("/") == False:
       path = "/" + path
 
-    if traefikConfig.hasPathRewrite(name):
-      print(f"Router \"{name}\" already exists")
+    if traefikConfig.hasPathRewrite(subPathName):
+      print(f"Path rewrite already exists for \"{router}\"")
       return
     
-    if traefikConfig.hasRouter(name) == False:
-      print(f"Router \"{name}\" does not exist")
+    if traefikConfig.hasRouter(router) == False:
+      print(f"Router \"{router}\" does not exist")
       return
     
     # Validate if the service host is a valid URL
@@ -35,7 +36,7 @@ class AddSubPathCommand(Command):
 
     print(f"Adding \"{domain}\" -> \"{serviceHost}\"")
   
-    traefikConfig.addSubPathRouter(name, domain, path, serviceHost)
+    traefikConfig.addSubPathRouter(subPathName, domain, path, serviceHost)
     traefikConfig.save()
 
     print(f"Access your service at http://{domain}")
