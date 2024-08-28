@@ -2,21 +2,30 @@ from command.command import Command
 from traefik.traefikConfig import TraefikConfig
 from utils.dockerUtils import restartTraefik
 
-class AddCommand(Command):
+class AddSubPathCommand(Command):
   def __init__(self):
-    super().__init__("add", "Add a domain", "add <name> <domain> <service host>")
+    super().__init__("add-path", "Add sub path to a domain (eg: bob.com/joe)", "add-path <name> <domain> <path> <service host>")
 
   def execute(self, traefikConfig: TraefikConfig, args):
     if len(args) < 3:
       self.printUsage()
       return
     
-    name = args[0]
     domain = args[1]
-    serviceHost = args[2]
+    name = args[0] + "-sub-path-" + domain
+    path = args[2]
+    serviceHost = args[3]
 
-    if traefikConfig.hasRouter(name):
+    # Fix the path
+    if path.startswith("/") == False:
+      path = "/" + path
+
+    if traefikConfig.hasPathRewrite(name):
       print(f"Router \"{name}\" already exists")
+      return
+    
+    if traefikConfig.hasRouter(name) == False:
+      print(f"Router \"{name}\" does not exist")
       return
     
     # Validate if the service host is a valid URL
@@ -26,7 +35,7 @@ class AddCommand(Command):
 
     print(f"Adding \"{domain}\" -> \"{serviceHost}\"")
   
-    traefikConfig.addRouter(name, domain, serviceHost)
+    traefikConfig.addSubPathRouter(name, domain, path, serviceHost)
     traefikConfig.save()
 
     print(f"Access your service at http://{domain}")

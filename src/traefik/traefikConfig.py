@@ -38,6 +38,29 @@ class TraefikConfig:
       }
     }
   
+  def addSubPathRouter(self, name, domain, path, serviceHost):
+    self.addPathRewrite(name, path)
+
+    # Add router
+    self.configYml["http"]["routers"][name] = {
+      "entryPoints": ["https"],
+      "rule": "Host(`%s`) && PathPrefix(`%s`)" % (domain, path),
+      "middlewares": ["default-headers", "https-redirectscheme", name],
+      "tls": {},
+      "service": name
+    }
+
+    # Add service
+    self.configYml["http"]["services"][name] = {
+      "loadBalancer": {
+        "servers": [
+          {
+            "url": serviceHost
+          }
+        ]
+      }
+    }
+  
   def removeRouter(self, name):
     # Remove router
     del self.configYml["http"]["routers"][name]
@@ -47,16 +70,14 @@ class TraefikConfig:
   
   def hasRouter(self, name):
     return name in self.configYml["http"]["routers"]
+
+  def hasPathRewrite(self, name):
+    return name in self.configYml["http"]["middlewares"]
   
-  def addService(self, name, serviceHost):
-    # Add service
-    self.configYml["http"]["services"][name] = {
-      "loadBalancer": {
-        "servers": [
-          {
-            "url": serviceHost
-          }
-        ]
+  def addPathRewrite(self, name, path):
+    self.configYml["http"]["middlewares"][name] = {
+      "stripPrefix": {
+        "prefixes": [path]
       }
     }
 
