@@ -39,7 +39,18 @@ class TraefikConfig:
     }
   
   def addSubPathRouter(self, name, domain, path, serviceHost):
-    self.addPathRewrite(name, path)
+    # Add trailing slashs
+    if not path.endswith("/"): 
+      path += "/"
+    if not serviceHost.endswith("/"): 
+      serviceHost += "/"
+
+    # Add path stripper middleware
+    self.configYml["http"]["middlewares"][name] = {
+      "stripPrefix": {
+        "prefixes": [path]
+      }
+    }
 
     # Add router
     self.configYml["http"]["routers"][name] = {
@@ -49,10 +60,6 @@ class TraefikConfig:
       "tls": {},
       "service": name
     }
-
-    # Add trailing slash
-    if not serviceHost.endswith("/"): 
-      serviceHost += "/"
 
     # Add service
     self.configYml["http"]["services"][name] = {
@@ -77,16 +84,6 @@ class TraefikConfig:
 
   def hasPathRewrite(self, name):
     return name in self.configYml["http"]["middlewares"]
-  
-  def addPathRewrite(self, name, path):
-    if not path.endswith("/"): # Add trailing slash
-      path += "/"
-
-    self.configYml["http"]["middlewares"][name] = {
-      "stripPrefix": {
-        "prefixes": [path]
-      }
-    }
 
   def hasService(self, name):
     return name in self.configYml["http"]["services"]

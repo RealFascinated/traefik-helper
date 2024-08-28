@@ -33,7 +33,7 @@ class AddSubPathCommand(Command):
       print(f"Service host \"{serviceHost}\" is not a valid URL")
       return
 
-    print(f"Adding \"{domain}\" -> \"{serviceHost}\"")
+    print(f"Adding \"{domain}{path}\" -> \"{serviceHost}\"")
   
     traefikConfig.addSubPathRouter(subPathName, domain, path, serviceHost)
     traefikConfig.save()
