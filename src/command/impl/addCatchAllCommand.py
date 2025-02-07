@@ -2,7 +2,7 @@ from command.command import Command
 from traefik.traefikConfig import TraefikConfig
 from utils.dockerUtils import restartTraefik
 
-class AddCommand(Command):
+class AddCatchAllCommand(Command):
   def __init__(self):
     super().__init__("add-catch-all", "Add a catch all domain", "add-catch-all <name> <domain> <service host>")
 
