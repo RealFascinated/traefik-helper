@@ -1,7 +1,6 @@
 from colorama import Fore
 from command.command import Command
 from traefik.traefikConfig import TraefikConfig
-from utils.dockerUtils import restartTraefik
 
 class RemoveCommand(Command):
   def __init__(self):
@@ -23,5 +22,3 @@ class RemoveCommand(Command):
     traefikConfig.removeRouter(name)
 
     traefikConfig.save()
-
-    restartTraefik()
