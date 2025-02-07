@@ -37,6 +37,28 @@ class TraefikConfig:
         ]
       }
     }
+
+  def addCatchAllRouter(self, name, domain, serviceHost):
+    # Add router
+    self.configYml["http"]["routers"][name] = {
+      "entryPoints": ["https"],
+      "rule": "HostRegexp(`{subdomain:[A-Za-z0-9-]+}.%s`)" % domain,
+      "middlewares": ["default-headers", "https-redirectscheme"],
+      "tls": {},
+      "priority": 1,
+      "service": name
+    }
+
+    # Add service
+    self.configYml["http"]["services"][name] = {
+      "loadBalancer": {
+        "servers": [
+          {
+            "url": serviceHost
+          }
+        ]
+      }
+    }
   
   def addSubPathRouter(self, name, domain, path, serviceHost):
     # Add trailing slashs

@@ -4,6 +4,7 @@ from command.impl.removeCommand import RemoveCommand
 from command.impl.restartCommand import RestartCommand
 from command.impl.logsCommand import LogsCommand
 from command.impl.addSubPathCommand import AddSubPathCommand
+from command.impl.addCatchAllCommand import AddCatchAllCommand
 
 class CommandManager:
 
@@ -13,10 +14,12 @@ class CommandManager:
     self.addCommand(AddCommand())
     self.addCommand(RemoveCommand())
     self.addCommand(ListCommand())
-    self.addCommand(RestartCommand())
+    self.addCommand(RestartCommand()) 
     self.addCommand(LogsCommand())
     self.addCommand(AddSubPathCommand())
+    self.addCommand(AddCatchAllCommand())
     pass
+
 
   def addCommand(self, command):
     self.commands.append(command)

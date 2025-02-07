@@ -17,6 +17,8 @@ class AddSubPathCommand(Command):
     # Fix the path
     if path.startswith("/") == False:
       path = "/" + path
+    if path.endswith("/") == True:
+      path = path[:-1] # Remove the trailing slash
     serviceHost = args[3]
     subPathName = domain + path
 
